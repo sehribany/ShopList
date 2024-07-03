@@ -33,6 +33,8 @@
 		987D06EA2C3370A500031939 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06E92C3370A500031939 /* BasketViewController.swift */; };
 		987D06ED2C3370CC00031939 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06EC2C3370CC00031939 /* ProfileViewController.swift */; };
 		987D06EF2C3370D600031939 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06EE2C3370D600031939 /* ProfileViewModel.swift */; };
+		98F34FC52C356AF1000377C3 /* CreateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F34FC42C356AF1000377C3 /* CreateListView.swift */; };
+		98F34FC72C3583B1000377C3 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F34FC62C3583B1000377C3 /* List.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		987D06E92C3370A500031939 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		987D06EC2C3370CC00031939 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		987D06EE2C3370D600031939 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		98F34FC42C356AF1000377C3 /* CreateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateListView.swift; sourceTree = "<group>"; };
+		98F34FC62C3583B1000377C3 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 		987D06B62C32AC4400031939 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				98F34FC32C356AD1000377C3 /* UIView */,
 				9844C30E2C343091005F1979 /* Extesions */,
 				987D06D42C32E90A00031939 /* Cell */,
 				987D06B72C32AC5900031939 /* Resources */,
@@ -167,6 +172,7 @@
 			children = (
 				987D06BC2C32B0C400031939 /* Category.swift */,
 				987D06BE2C32B31600031939 /* Product.swift */,
+				98F34FC62C3583B1000377C3 /* List.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -221,6 +227,14 @@
 				987D06EC2C3370CC00031939 /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		98F34FC32C356AD1000377C3 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				98F34FC42C356AF1000377C3 /* CreateListView.swift */,
+			);
+			path = UIView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,12 +327,14 @@
 				987D06D12C32CBA800031939 /* PopularViewController.swift in Sources */,
 				987D06E52C336E9B00031939 /* MainTabBarController.swift in Sources */,
 				987D06A02C32AB6E00031939 /* AppDelegate.swift in Sources */,
+				98F34FC72C3583B1000377C3 /* List.swift in Sources */,
 				987D06E82C33709300031939 /* BasketViewModel.swift in Sources */,
 				987D06D32C32CCED00031939 /* CategoryCell.swift in Sources */,
 				987D06EF2C3370D600031939 /* ProfileViewModel.swift in Sources */,
 				987D06EA2C3370A500031939 /* BasketViewController.swift in Sources */,
 				987D06BF2C32B31600031939 /* Product.swift in Sources */,
 				987D06E32C336E5F00031939 /* ListViewController.swift in Sources */,
+				98F34FC52C356AF1000377C3 /* CreateListView.swift in Sources */,
 				987D06A22C32AB6E00031939 /* SceneDelegate.swift in Sources */,
 				987D06ED2C3370CC00031939 /* ProfileViewController.swift in Sources */,
 				9844C3102C3430A4005F1979 /* UIImage+Extensions.swift in Sources */,
