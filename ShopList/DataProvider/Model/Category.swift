@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Category model
+//MARK: Category model
 
 struct Category: Codable{
     let id: Int
