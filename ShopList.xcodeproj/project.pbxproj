@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9844C3102C3430A4005F1979 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9844C30F2C3430A4005F1979 /* UIImage+Extensions.swift */; };
 		987D06A02C32AB6E00031939 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D069F2C32AB6E00031939 /* AppDelegate.swift */; };
 		987D06A22C32AB6E00031939 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06A12C32AB6E00031939 /* SceneDelegate.swift */; };
 		987D06A92C32AB6F00031939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 987D06A82C32AB6F00031939 /* Assets.xcassets */; };
@@ -25,9 +26,17 @@
 		987D06D72C32E9CA00031939 /* PopularViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06D62C32E9CA00031939 /* PopularViewModel.swift */; };
 		987D06DA2C32F45300031939 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 987D06D92C32F45300031939 /* SnapKit */; };
 		987D06DD2C32FE2800031939 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 987D06DC2C32FE2800031939 /* SDWebImage */; };
+		987D06E12C336E4D00031939 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06E02C336E4D00031939 /* ListViewModel.swift */; };
+		987D06E32C336E5F00031939 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06E22C336E5F00031939 /* ListViewController.swift */; };
+		987D06E52C336E9B00031939 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06E42C336E9B00031939 /* MainTabBarController.swift */; };
+		987D06E82C33709300031939 /* BasketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06E72C33709300031939 /* BasketViewModel.swift */; };
+		987D06EA2C3370A500031939 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06E92C3370A500031939 /* BasketViewController.swift */; };
+		987D06ED2C3370CC00031939 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06EC2C3370CC00031939 /* ProfileViewController.swift */; };
+		987D06EF2C3370D600031939 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06EE2C3370D600031939 /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9844C30F2C3430A4005F1979 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		987D069C2C32AB6E00031939 /* ShopList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		987D069F2C32AB6E00031939 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		987D06A12C32AB6E00031939 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +49,13 @@
 		987D06D02C32CBA800031939 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
 		987D06D22C32CCED00031939 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		987D06D62C32E9CA00031939 /* PopularViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewModel.swift; sourceTree = "<group>"; };
+		987D06E02C336E4D00031939 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		987D06E22C336E5F00031939 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		987D06E42C336E9B00031939 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		987D06E72C33709300031939 /* BasketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewModel.swift; sourceTree = "<group>"; };
+		987D06E92C3370A500031939 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
+		987D06EC2C3370CC00031939 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		987D06EE2C3370D600031939 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9844C30E2C343091005F1979 /* Extesions */ = {
+			isa = PBXGroup;
+			children = (
+				9844C30F2C3430A4005F1979 /* UIImage+Extensions.swift */,
+			);
+			path = Extesions;
+			sourceTree = "<group>";
+		};
 		987D06932C32AB6E00031939 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +127,7 @@
 		987D06B62C32AC4400031939 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				9844C30E2C343091005F1979 /* Extesions */,
 				987D06D42C32E90A00031939 /* Cell */,
 				987D06B72C32AC5900031939 /* Resources */,
 			);
@@ -120,7 +145,11 @@
 		987D06B82C32AC6B00031939 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				987D06DE2C336DF800031939 /* Main */,
+				987D06DF2C336E1E00031939 /* Lists */,
+				987D06E62C33708400031939 /* Basket */,
 				987D06CF2C32CB8900031939 /* Populer */,
+				987D06EB2C3370B900031939 /* Profile */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -157,6 +186,41 @@
 				987D06D22C32CCED00031939 /* CategoryCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		987D06DE2C336DF800031939 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				987D06E42C336E9B00031939 /* MainTabBarController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		987D06DF2C336E1E00031939 /* Lists */ = {
+			isa = PBXGroup;
+			children = (
+				987D06E02C336E4D00031939 /* ListViewModel.swift */,
+				987D06E22C336E5F00031939 /* ListViewController.swift */,
+			);
+			path = Lists;
+			sourceTree = "<group>";
+		};
+		987D06E62C33708400031939 /* Basket */ = {
+			isa = PBXGroup;
+			children = (
+				987D06E72C33709300031939 /* BasketViewModel.swift */,
+				987D06E92C3370A500031939 /* BasketViewController.swift */,
+			);
+			path = Basket;
+			sourceTree = "<group>";
+		};
+		987D06EB2C3370B900031939 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				987D06EE2C3370D600031939 /* ProfileViewModel.swift */,
+				987D06EC2C3370CC00031939 /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,10 +311,18 @@
 			files = (
 				987D06D72C32E9CA00031939 /* PopularViewModel.swift in Sources */,
 				987D06D12C32CBA800031939 /* PopularViewController.swift in Sources */,
+				987D06E52C336E9B00031939 /* MainTabBarController.swift in Sources */,
 				987D06A02C32AB6E00031939 /* AppDelegate.swift in Sources */,
+				987D06E82C33709300031939 /* BasketViewModel.swift in Sources */,
 				987D06D32C32CCED00031939 /* CategoryCell.swift in Sources */,
+				987D06EF2C3370D600031939 /* ProfileViewModel.swift in Sources */,
+				987D06EA2C3370A500031939 /* BasketViewController.swift in Sources */,
 				987D06BF2C32B31600031939 /* Product.swift in Sources */,
+				987D06E32C336E5F00031939 /* ListViewController.swift in Sources */,
 				987D06A22C32AB6E00031939 /* SceneDelegate.swift in Sources */,
+				987D06ED2C3370CC00031939 /* ProfileViewController.swift in Sources */,
+				9844C3102C3430A4005F1979 /* UIImage+Extensions.swift in Sources */,
+				987D06E12C336E4D00031939 /* ListViewModel.swift in Sources */,
 				987D06BD2C32B0C400031939 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
