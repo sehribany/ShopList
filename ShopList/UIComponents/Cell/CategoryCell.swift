@@ -13,6 +13,7 @@ class CategoryCell: UICollectionViewCell {
     
     // MARK: - Properties
     
+    static var identifier: String = "CategoryCell"
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -46,13 +47,7 @@ class CategoryCell: UICollectionViewCell {
         super.init(coder: aDecoder)
         setupViews()
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        imageView.image = nil
-        nameLabel.text = nil
-    }
-    
+        
     // MARK: - Setup
     
     private func setupViews() {
