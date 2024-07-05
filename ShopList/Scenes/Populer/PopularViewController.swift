@@ -18,9 +18,22 @@ class PopularViewController: UIViewController {
         layout.itemSize = CGSize(width: 100, height: 120)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .appBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: "CategoryCell")
+        collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
+        return collectionView
+    }()
+    
+    lazy private var productsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .appBackground
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(ProductCell.self, forCellWithReuseIdentifier: ProductCell.identifier)
         return collectionView
     }()
     
@@ -30,8 +43,8 @@ class PopularViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .appBackground
-        setupCollectionView()
+        addSubViews()
+        configureContents()
         fetchCategories()
     }
     
@@ -45,10 +58,22 @@ class PopularViewController: UIViewController {
         }
     }
     
-    // MARK: - Collection View Setup
+    private func fetchProducts(for categoryID: Int) {
+        viewModel.fetchProducts(categoryID: categoryID) {
+            DispatchQueue.main.async {
+                self.productsCollectionView.reloadData()
+            }
+        }
+    }
+    
+    // MARK: - UILayout and Configuration
+    
+    private func addSubViews(){
+        setupCollectionView()
+        setupProductsCollectionView()
+    }
     
     private func setupCollectionView() {
-        collectionView.dataSource = self
         view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints { make in
@@ -57,18 +82,71 @@ class PopularViewController: UIViewController {
             make.height.equalTo(140)
         }
     }
+    
+    private func setupProductsCollectionView() {
+        view.addSubview(productsCollectionView)
+        
+        productsCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(collectionView.snp.bottom).offset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.leading.trailing.equalToSuperview().inset(10)
+        }
+    }
+    
+    private func configureContents(){
+        view.backgroundColor = .appBackground
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        productsCollectionView.dataSource = self
+        productsCollectionView.delegate = self
+    }
 }
 
-// MARK: - UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource and UICollectionViewDelegate
+
 extension PopularViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.categories.count
+        if collectionView == self.collectionView {
+            return viewModel.categories.count
+        } else {
+            return viewModel.products.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCell
-        let category = viewModel.categories[indexPath.item]
-        cell.configure(with: category)
-        return cell
+        if collectionView == self.collectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
+            let category = viewModel.categories[indexPath.item]
+            cell.configure(with: category)
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCell.identifier, for: indexPath) as! ProductCell
+            cell.layer.borderWidth = 0.5
+            cell.layer.borderColor = UIColor.appGray.cgColor
+            cell.layer.cornerRadius = 5
+            let product = viewModel.products[indexPath.item]
+            cell.configure(with: product)
+            return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.collectionView {
+            let category = viewModel.categories[indexPath.item]
+            fetchProducts(for: category.id)
+        }
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension PopularViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == productsCollectionView {
+            let width = (collectionView.frame.width - 30) / 2 
+            return CGSize(width: width, height: width * 1.3)
+        } else {
+            return CGSize(width: 100, height: 120)
+        }
     }
 }
