@@ -75,7 +75,7 @@ class MainTabBarController: UITabBarController {
     private func setupViewControllers() {
         viewControllers = [
             createNavigationController(for: ListViewController(), imageName: "list.clipboard"),
-            createNavigationController(for: BasketViewController()),
+            createNavigationController(for: PopularViewController()),
             createNavigationController(for: ProfileViewController(), imageName: "person.crop.circle")
         ]
     }
