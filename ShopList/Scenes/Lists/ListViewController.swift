@@ -28,6 +28,7 @@ class ListViewController: UIViewController {
     
     private lazy var createListView = CreateListView()
     private lazy var blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    private var viewModel = ListViewModel()
     
     // MARK: - Lifecycle
     
@@ -43,7 +44,7 @@ class ListViewController: UIViewController {
     }
 }
 
-// MARK: - setupUI
+// MARK: - setupUI & setupNavigationBar
 extension ListViewController{
     
     private func setupUI(){
@@ -83,9 +84,7 @@ extension ListViewController{
         
         createListView.isHidden = true
         createListView.createButtonAction = { [weak self] listName in
-            print("List name: \(listName ?? "")")
-            self?.createListView.hideKeyboard()
-            self?.dismissPopupView()
+            self?.saveList(name: listName)
         }
     }
     
@@ -93,8 +92,10 @@ extension ListViewController{
         navigationItem.title = "My Lists"
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.appDark]
     }
-    
-    //MARK: - Action
+}
+
+//MARK: - Action
+extension ListViewController{
     
     @objc private func addButtonTapped() {
         createListView.isHidden = false
@@ -108,6 +109,20 @@ extension ListViewController{
         createListView.isHidden = true
         UIView.animate(withDuration: 0.3) {
             self.blurEffectView.alpha = 0
+        }
+    }
+    
+    private func saveList(name: String?) {
+        guard let name = name, !name.isEmpty else {return}
+    
+        viewModel.saveList(name: name) { [weak self] error in
+            if let error = error {
+                print("Error saving list: \(error)")
+            } else {
+                print("List saved successfully")
+                self?.createListView.hideKeyboard()
+                self?.dismissPopupView()
+            }
         }
     }
     
