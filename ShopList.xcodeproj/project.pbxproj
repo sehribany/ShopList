@@ -164,6 +164,7 @@
 		987D06BA2C32B0A600031939 /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
+				98F289522C402E0D0029B9A4 /* Manager */,
 				987D06BB2C32B0AC00031939 /* Model */,
 			);
 			path = DataProvider;
@@ -230,6 +231,13 @@
 				987D06EC2C3370CC00031939 /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		98F289522C402E0D0029B9A4 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		98F34FC32C356AD1000377C3 /* UIView */ = {
