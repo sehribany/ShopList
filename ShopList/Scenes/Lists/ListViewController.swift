@@ -12,6 +12,17 @@ class ListViewController: UIViewController {
     
     // MARK: - Properties
     
+    lazy private var listCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: view.frame.width, height: 90)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .appBackground
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
+        return collectionView
+    }()
+    
     private lazy var addButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .appDark
@@ -27,7 +38,15 @@ class ListViewController: UIViewController {
     }()
     
     private lazy var createListView = CreateListView()
-    private lazy var blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+   
+    private lazy var blurEffectView: BlurView = {
+        let blurView = BlurView(effect: UIBlurEffect(style: .dark))
+        blurView.dismissAction = { [weak self] in
+            self?.dismissPopupView()
+        }
+        return blurView
+    }()
+    
     private var viewModel = ListViewModel()
     
     // MARK: - Lifecycle
@@ -35,12 +54,24 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        configureContents()
+        fetchList()
         setupNavigationBar()
         registerForKeyboardNotifications()
     }
         
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - Data Fetch
+    
+    private func fetchList() {
+        viewModel.fetchLists { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.listCollectionView.reloadData()
+            }
+        }
     }
 }
 
@@ -49,9 +80,10 @@ extension ListViewController{
     
     private func setupUI(){
         view.backgroundColor = .appBackground
-        setupAddButton()
+        setupCollectionView()
         setupBlurEffectView()
         setupCreateListView()
+        setupAddButton()
     }
     
     private func setupAddButton(){
@@ -64,9 +96,16 @@ extension ListViewController{
         }
     }
     
+    private func setupCollectionView(){
+        view.addSubview(listCollectionView)
+        listCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(10)
+        }
+    }
+    
     private func setupBlurEffectView() {
-        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
-        blurEffectView.alpha = 0
         view.addSubview(blurEffectView)
         blurEffectView.snp.makeConstraints { make in
             make.edges.equalTo(view)
@@ -74,7 +113,6 @@ extension ListViewController{
     }
     
     private func setupCreateListView(){
-        createListView.layer.cornerRadius = 15
         view.addSubview(createListView)
         createListView.snp.makeConstraints { make in
             make.center.equalTo(view)
@@ -86,6 +124,11 @@ extension ListViewController{
         createListView.createButtonAction = { [weak self] listName in
             self?.saveList(name: listName)
         }
+    }
+    
+    private func configureContents(){
+        listCollectionView.delegate = self
+        listCollectionView.dataSource = self
     }
     
     private func setupNavigationBar() {
@@ -104,9 +147,11 @@ extension ListViewController{
             self.blurEffectView.alpha = 1
         }
     }
-    
+
     private func dismissPopupView() {
         createListView.isHidden = true
+        createListView.hideKeyboard()
+        createListView.clearTextField()
         UIView.animate(withDuration: 0.3) {
             self.blurEffectView.alpha = 0
         }
@@ -122,6 +167,7 @@ extension ListViewController{
                 print("List saved successfully")
                 self?.createListView.hideKeyboard()
                 self?.dismissPopupView()
+                self?.fetchList()
             }
         }
     }
@@ -159,6 +205,16 @@ extension ListViewController{
     }
 }
 
-#Preview{
-    ListViewController()
+extension ListViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.lists.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCell.identifier, for: indexPath) as! ListCell
+        let list = viewModel.lists[indexPath.item]
+        cell.configure(with: list)
+        return cell
+    }
 }
