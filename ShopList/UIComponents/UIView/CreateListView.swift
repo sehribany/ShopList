@@ -50,7 +50,7 @@ class CreateListView: UIView {
     
     private func setupUI() {
         backgroundColor = .appWhite
-        layer.cornerRadius = 10
+        layer.cornerRadius = 15
         layer.masksToBounds = true
         
         addSubview(textField)
@@ -82,5 +82,9 @@ class CreateListView: UIView {
     
     func hideKeyboard() {
         textField.resignFirstResponder()
+    }
+    
+    func clearTextField() {
+        textField.text = ""
     }
 }
