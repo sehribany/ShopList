@@ -25,6 +25,7 @@ class ProductCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .appDark
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
@@ -44,6 +45,9 @@ class ProductCell: UICollectionViewCell {
     // MARK: - Setup
     
     private func setupViews() {
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.appGray.cgColor
+        layer.cornerRadius = 5
         contentView.addSubview(imageView)
         contentView.addSubview(nameLabel)
         
