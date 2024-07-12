@@ -16,7 +16,7 @@ class CategoryCell: UICollectionViewCell {
     static var identifier: String = "CategoryCell"
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .appDark
         label.textAlignment = .center
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
