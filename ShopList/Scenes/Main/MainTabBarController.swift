@@ -89,7 +89,3 @@ class MainTabBarController: UITabBarController {
         return navController
     }
 }
-
-#Preview{
-    MainTabBarController()
-}

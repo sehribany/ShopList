@@ -121,9 +121,6 @@ extension PopularViewController: UICollectionViewDataSource {
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCell.identifier, for: indexPath) as! ProductCell
-            cell.layer.borderWidth = 0.5
-            cell.layer.borderColor = UIColor.appGray.cgColor
-            cell.layer.cornerRadius = 5
             let product = viewModel.products[indexPath.item]
             cell.configure(with: product)
             return cell
