@@ -15,9 +15,11 @@ class ListViewController: UIViewController {
     lazy private var listCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: view.frame.width, height: 90)
+        layout.itemSize = CGSize(width: view.frame.width - 20, height: 90)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .appBackground
+        collectionView.alwaysBounceVertical = true
+        collectionView.isUserInteractionEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
         return collectionView
@@ -101,7 +103,8 @@ extension ListViewController{
         listCollectionView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.bottom.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(10)
+            make.leading.equalTo(10)
+            make.trailing.equalTo(-10)
         }
     }
     
@@ -205,7 +208,7 @@ extension ListViewController{
     }
 }
 
-extension ListViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+extension ListViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.lists.count
@@ -217,4 +220,22 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
         cell.configure(with: list)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath) -> [UIContextualAction]? {
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, completion) in
+            print("Edit")
+            completion(true)
+        }
+        
+        editAction.backgroundColor = UIColor.blue
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, completion) in
+            print("Delete")
+            completion(true)
+        }
+        
+        return [deleteAction, editAction]
+    }
+
+
 }
