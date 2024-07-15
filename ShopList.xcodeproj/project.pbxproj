@@ -33,6 +33,8 @@
 		987D06EA2C3370A500031939 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06E92C3370A500031939 /* BasketViewController.swift */; };
 		987D06ED2C3370CC00031939 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06EC2C3370CC00031939 /* ProfileViewController.swift */; };
 		987D06EF2C3370D600031939 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D06EE2C3370D600031939 /* ProfileViewModel.swift */; };
+		9890D4C52C428E60009D1F44 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9890D4C42C428E60009D1F44 /* ProductViewController.swift */; };
+		9890D4C72C428E69009D1F44 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9890D4C62C428E69009D1F44 /* ProductViewModel.swift */; };
 		98BEA0942C374BB100097003 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BEA0932C374BB100097003 /* ProductCell.swift */; };
 		98D3C0F32C4149DC00BC0C7C /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D3C0F22C4149DC00BC0C7C /* ListCell.swift */; };
 		98D3C0F72C41940800BC0C7C /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D3C0F62C41940800BC0C7C /* BlurView.swift */; };
@@ -61,6 +63,8 @@
 		987D06E92C3370A500031939 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		987D06EC2C3370CC00031939 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		987D06EE2C3370D600031939 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		9890D4C42C428E60009D1F44 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		9890D4C62C428E69009D1F44 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		98BEA0932C374BB100097003 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		98D3C0F22C4149DC00BC0C7C /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		98D3C0F62C41940800BC0C7C /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 			children = (
 				987D06DE2C336DF800031939 /* Main */,
 				987D06DF2C336E1E00031939 /* Lists */,
+				9890D4C32C428E3B009D1F44 /* Product */,
 				987D06E62C33708400031939 /* Basket */,
 				987D06CF2C32CB8900031939 /* Populer */,
 				987D06EB2C3370B900031939 /* Profile */,
@@ -237,6 +242,15 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		9890D4C32C428E3B009D1F44 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				9890D4C62C428E69009D1F44 /* ProductViewModel.swift */,
+				9890D4C42C428E60009D1F44 /* ProductViewController.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
 		98F34FC32C356AD1000377C3 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +318,7 @@
 				987D06C22C32BC6400031939 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				987D06D82C32F45300031939 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				987D06DB2C32FE2700031939 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				982897152C451731002427DA /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
 			);
 			productRefGroup = 987D069D2C32AB6E00031939 /* Products */;
 			projectDirPath = "";
@@ -335,8 +350,10 @@
 				987D06D72C32E9CA00031939 /* PopularViewModel.swift in Sources */,
 				987D06D12C32CBA800031939 /* PopularViewController.swift in Sources */,
 				987D06E52C336E9B00031939 /* MainTabBarController.swift in Sources */,
+				9890D4C52C428E60009D1F44 /* ProductViewController.swift in Sources */,
 				987D06A02C32AB6E00031939 /* AppDelegate.swift in Sources */,
 				98D3C0F32C4149DC00BC0C7C /* ListCell.swift in Sources */,
+				9890D4C72C428E69009D1F44 /* ProductViewModel.swift in Sources */,
 				98F34FC72C3583B1000377C3 /* List.swift in Sources */,
 				987D06E82C33709300031939 /* BasketViewModel.swift in Sources */,
 				987D06D32C32CCED00031939 /* CategoryCell.swift in Sources */,
@@ -566,6 +583,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		982897152C451731002427DA /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.1;
+			};
+		};
 		987D06C22C32BC6400031939 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";

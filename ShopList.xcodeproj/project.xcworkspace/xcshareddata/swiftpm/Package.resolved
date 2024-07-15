@@ -1,5 +1,5 @@
 {
-  "originHash" : "b58a80566567d41ebe982fc411585e9e5904fc4e244c1bccd7fa110a2bd1cbf1",
+  "originHash" : "ffbd9539fd4ee5b3883131baa85eb67d76c0d4ea8f856d369e0b978f1f0843b4",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -134,6 +134,15 @@
       "state" : {
         "revision" : "9f0c76544701845ad98716f3f6a774a892152bcb",
         "version" : "1.26.0"
+      }
+    },
+    {
+      "identity" : "swipecellkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwipeCellKit/SwipeCellKit",
+      "state" : {
+        "revision" : "7219cad3098637176ace311510d11467dbfb9bb0",
+        "version" : "2.7.1"
       }
     }
   ],
