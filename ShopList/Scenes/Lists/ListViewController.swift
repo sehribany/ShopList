@@ -12,17 +12,12 @@ class ListViewController: UIViewController {
     
     // MARK: - Properties
     
-    lazy private var listCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: view.frame.width - 20, height: 90)
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .appBackground
-        collectionView.alwaysBounceVertical = true
-        collectionView.isUserInteractionEnabled = true
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
-        return collectionView
+    lazy private var listTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .appBackground
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
+        return tableView
     }()
     
     private lazy var addButton: UIButton = {
@@ -71,7 +66,7 @@ class ListViewController: UIViewController {
     private func fetchList() {
         viewModel.fetchLists { [weak self] _ in
             DispatchQueue.main.async {
-                self?.listCollectionView.reloadData()
+                self?.listTableView.reloadData()
             }
         }
     }
@@ -82,7 +77,7 @@ extension ListViewController{
     
     private func setupUI(){
         view.backgroundColor = .appBackground
-        setupCollectionView()
+        setupTableView()
         setupBlurEffectView()
         setupCreateListView()
         setupAddButton()
@@ -98,9 +93,9 @@ extension ListViewController{
         }
     }
     
-    private func setupCollectionView(){
-        view.addSubview(listCollectionView)
-        listCollectionView.snp.makeConstraints { make in
+    private func setupTableView(){
+        view.addSubview(listTableView)
+        listTableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.bottom.equalToSuperview()
             make.leading.equalTo(10)
@@ -130,8 +125,8 @@ extension ListViewController{
     }
     
     private func configureContents(){
-        listCollectionView.delegate = self
-        listCollectionView.dataSource = self
+        listTableView.delegate = self
+        listTableView.dataSource = self
     }
     
     private func setupNavigationBar() {
@@ -208,34 +203,29 @@ extension ListViewController{
     }
 }
 
-extension ListViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension ListViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.lists.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCell.identifier, for: indexPath) as! ListCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier, for: indexPath) as! ListCell
         let list = viewModel.lists[indexPath.item]
         cell.configure(with: list)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath) -> [UIContextualAction]? {
-        let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, completion) in
-            print("Edit")
-            completion(true)
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+            print("Edit tapped")
         }
+        editAction.backgroundColor = UIColor.systemBlue
         
-        editAction.backgroundColor = UIColor.blue
-        
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, completion) in
-            print("Delete")
-            completion(true)
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            print("Delete tapped")
         }
+        deleteAction.backgroundColor = UIColor.systemRed
         
         return [deleteAction, editAction]
     }
-
-
 }
