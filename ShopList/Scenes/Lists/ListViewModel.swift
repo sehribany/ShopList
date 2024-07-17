@@ -13,6 +13,8 @@ class ListViewModel{
     private let db = Firestore.firestore()
     
     var lists = [List]()
+    var updateHandler: (() -> Void)?
+    var errorHandler: ((String) -> Void)?
     
     // Saves a new list to Firestore
     func saveList(name: String, completion: @escaping (Error?) -> Void) {
@@ -54,6 +56,32 @@ class ListViewModel{
                     return List(id: id, name: name, products: products)
                 } ?? []
                 completion(nil)
+            }
+        }
+    }
+    
+    // Updates an existing list in Firestore
+    func editList(id: String, newName: String) {
+        db.collection("lists").document(id).updateData(["name": newName]) { [weak self] error in
+            if let error = error {
+                self?.errorHandler?("Error editing list: \(error.localizedDescription)")
+            } else {
+                if let index = self?.lists.firstIndex(where: { $0.id == id }) {
+                    self?.lists[index].name = newName
+                    self?.updateHandler?()
+                }
+            }
+        }
+    }
+    
+    // Deletes a list from Firestore
+    func deleteList(id: String) {
+        db.collection("lists").document(id).delete { [weak self] error in
+            if let error = error {
+                self?.errorHandler?("Error deleting list: \(error.localizedDescription)")
+            } else {
+                self?.lists.removeAll { $0.id == id }
+                self?.updateHandler?()
             }
         }
     }
