@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ListCell: UICollectionViewCell {
+class ListCell: UITableViewCell {
     //MARK: - Properties
     
     static var identifier: String = "ListCell"
@@ -30,19 +30,18 @@ class ListCell: UICollectionViewCell {
     }()
     
     //MARK: - Lifecycle
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
     }
-    
+        
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupViews()
     }
     
     //MARK: - Setup
-    
     private func setupViews() {
         backgroundColor = .appWhite
         layer.cornerRadius = 15
@@ -63,7 +62,6 @@ class ListCell: UICollectionViewCell {
     }
     
     //MARK: - Configure
-    
     func configure(with list: List) {
         nameLabel.text = list.name
         let totalProducts = list.products.count
